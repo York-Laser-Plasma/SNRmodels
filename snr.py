@@ -11,6 +11,7 @@ import snr_calc as calc
 import snr_plot as plt
 import snr_fileCalc as fileCalc
 import math
+import csv
 
 # To create executable:
 # pyinstaller --noconfirm --log-level=ERROR filename.spec
@@ -765,6 +766,16 @@ def gt_zero(value):
     return value > 0
 
 ##############################################################################################################################
+def export_results():
+    for output_data in SNR.graph.data:
+        with open( output_data[0] + '.csv', mode='w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([SNR.graph.xlabel, SNR.graph.ylabel])
+            for row_i in range(len(output_data[1])):
+                writer.writerow([output_data[1][row_i], output_data[2][row_i]])
+            
+    
+##############################################################################################################################
 if __name__ == '__main__':
     
     ab_window_open = {"ISM": False, "Ejecta": False}
@@ -897,6 +908,8 @@ if __name__ == '__main__':
 
     APP.root.bind("<Return>", enter_pressed)
     SNR.update_output()
+    SNR.buttons["em"] = gui.SubmitButton(APP.output, "Export Results", export_results, pady=10)
+    print()
     model_change(False)
     s_change(False)
     n_change(False)

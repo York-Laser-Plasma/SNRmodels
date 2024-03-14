@@ -53,7 +53,7 @@ class OutputPlot(Figure):
         # Remove scientific notation from edges of axes (will be added to axis titles when plot limits are known)
         self.graph.xaxis.offsetText.set_visible(False)
         self.graph.yaxis.offsetText.set_visible(False)
-
+        self.data = []
 ##############################################################################################################################
     def add_data(self, x_data, y_data, **kwargs):
         """Add line to plot.
@@ -63,6 +63,8 @@ class OutputPlot(Figure):
             y_data (np.ndarray): y-values associated with x-values in x_data
             **kwargs: additional options for plot
         """
+        self.data.append([kwargs['label'],x_data,y_data])
+        # self.data.append(kwargs.label)
 
         self.graph.plot(x_data, y_data, **kwargs)
 
@@ -97,9 +99,11 @@ class OutputPlot(Figure):
     def clear_plot(self):
         """Remove all lines from plot."""
         self.graph.cla()
+        self.data.clear()
 
 ##############################################################################################################################
     def update_plot(self):
+        self.data.clear()
         pass
 
 ##############################################################################################################################
