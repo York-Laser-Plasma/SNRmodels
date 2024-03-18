@@ -908,7 +908,7 @@ if __name__ == '__main__':
 
     APP.root.bind("<Return>", enter_pressed)
     SNR.update_output()
-    SNR.buttons["em"] = gui.SubmitButton(APP.output, "Export Results", export_results, pady=10)
+    SNR.buttons["er"] = gui.SubmitButton(APP.output, "Export Results", export_results, pady=10)
     print()
     model_change(False)
     s_change(False)
