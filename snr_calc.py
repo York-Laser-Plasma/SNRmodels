@@ -2934,7 +2934,7 @@ class SNREmissivity:
         x_data = np.linspace(*limits, 150)
         # Get new data using function associated with plot
         y_data = plot.properties["function"](x_data)
-        plot.add_data(x_data, y_data, color=plot.properties["color"])
+        plot.add_data(x_data, y_data, color=plot.properties["color"],label="output")
         plot.display_plot(limits=limits)
 
 #######################################################################################################################
